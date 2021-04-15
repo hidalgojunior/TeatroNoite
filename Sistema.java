@@ -4,19 +4,24 @@ public class Sistema {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner ler = new Scanner(System.in);
-		int opc = 0;
-		boolean passou = false;
+		Scanner ler = new Scanner(System.in); //leia do portugol
+		int opc = 0; //menu de escolhas
+		boolean passou = false; //obrigar o cliente a abrir o teatro
 		int fileiras = 0, cadeiras = 0;
-		float prInteira = 0; 
-		int numCadeira=0, numFileira=0;
-		char teatro[][] = new char[30][50];
+		float prInteira = 0; //preço do ingresso inteiro
+		int numCadeira=0, numFileira=0; 
+		char teatro[][] = new char[30][50]; // tamanho total do teatro
 		while (opc!= 99) {
 			System.out.println("******** Menu Principal ******");
 			System.out.println("[1] - Inicializar Variaveis ");
 			System.out.println("[2] - Mapa do Teatro ");
 			System.out.println("[3] - Venda de Lugares");
 			System.out.println("[4] - Reserva de Lugares");
+			System.out.println("[5] - Reserva de Lugares");
+			System.out.println("[6] - Devolver Lugares");
+			System.out.println("[7] - Verificar Vendas");
+			System.out.println("[8] - Encerrar Vendas");
+			
 			System.out.println("[99] - Finalizar o programa");
 			opc = ler.nextInt();
 			if (opc!= 99){
@@ -34,7 +39,7 @@ public class Sistema {
 					passou = true;
 					for(int f = 0; f < fileiras; f++) {
 						for (int c = 0; c < cadeiras; c++) {
-							teatro[c][f] = 'L';
+							teatro[f][c] = 'L';
 						}
 					}
 				}
@@ -42,7 +47,7 @@ public class Sistema {
 					if ((opc == 2) && (passou == true)) {
 						for(int f = 0; f < fileiras; f++) {
 							for (int c = 0; c < cadeiras; c++) {
-								System.out.print(teatro[c][f] + " ");
+								System.out.print(teatro[f][c] + " ");
 							}
 							System.out.println();
 						} 
@@ -54,9 +59,17 @@ public class Sistema {
 							numFileira= ler.nextInt();
 							System.out.print("Informe a cadeira que deseja comprar: ");
 							numCadeira = ler.nextInt();
-							teatro[numCadeira-1][numFileira-1] = 'V';
+							teatro[numFileira-1][numCadeira-1] = 'V';
 							//adicionar 1 a vendidas inteiras
 							//adicionar prInteira ao total
+						}
+						else {
+							if ((opc == 8) && (passou == true)){
+								System.out.println("Realizando o encerramento do teatro..." );
+								passou = false;
+								fileiras = 0;
+								cadeiras = 0;
+							}
 						}
 					}
 				}
